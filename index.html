@@ -55,7 +55,7 @@
           event.preventDefault();
           if (event.keyCode === 13) {
               question_elem.blur();
-              var url = base + '&question=' +  encodeURIComponent(question_elem.value)
+              var url = base + '&question=' +  encodeURIComponent(question_elem.value.trim())
               question_elem.value = "";
               question_elem.style.background = "rgba(255, 255, 255, 0)";
               question_elem.placeholder = "";
@@ -85,7 +85,7 @@
           event.preventDefault();
           if (event.keyCode === 13) {
               gratitude_elem.blur();
-              var url = base + '&gratitude=' +  encodeURIComponent(gratitude_elem.value)
+              var url = base + '&gratitude=' +  encodeURIComponent(gratitude_elem.value.trim())
               gratitude_elem.value = "";
               gratitude_elem.placeholder = "";
               gratitude_elem.style.background = "rgba(220, 220, 220, 0)";
@@ -95,6 +95,7 @@
                 gratitude_elem.style.background = "rgba(220, 220, 220, 0.25)";
                 gratitude_elem.placeholder = "Gratitude sent. Type again to send another";
               })
+              console.log(url)
               $.ajax({
                 url: url,
                 method: "GET",
@@ -102,6 +103,7 @@
                 data: "{}",
                 success: function () {},
                 error: function (xhr, status, error) {
+                 console.log('error')
                  alert("Oops! Try again. If it still doesn't work, it is possible your link is incorrect or teacher's baskets are full. Please send message manually to your teacher <3")
                 }
               })
