@@ -71,10 +71,13 @@
                 method: "GET",
                 dataType: "json",
                 data: "{}",
-                success: function () {},
+                success: function (data) {
+                  if (data['result'] == 'error') {
+                    alert("Oops! Something went wrong. Please send message manually to your teacher <3")
+                  }
+                },
                 error: function (xhr, status, error) {
-                 console.log('error')
-                 alert("Oops! Try again. If it still doesn't work, it is possible your link is incorrect or teacher's baskets are full. Please send message manually to your teacher <3")
+                 alert("Oops! Something went wrong. Please send message manually to your teacher <3")
                 }
               })
             }
@@ -101,10 +104,13 @@
                 method: "GET",
                 dataType: "json",
                 data: "{}",
-                success: function () {},
+                success: function (data) {
+                  if (data['result'] == 'error') {
+                    alert("Oops! Something went wrong. Please send message manually to your teacher <3")
+                  }
+                },
                 error: function (xhr, status, error) {
-                 console.log('error')
-                 alert("Oops! Try again. If it still doesn't work, it is possible your link is incorrect or teacher's baskets are full. Please send message manually to your teacher <3")
+                 alert("Oops! Something went wrong. Please send message manually to your teacher <3")
                 }
               })
             }
