@@ -70,7 +70,10 @@
             question_elem.value = "";
             question_elem.style.background = "rgba(255, 255, 255, 0)";
             question_elem.placeholder = "";
-                
+            document.getElementById('questioncard').style.display = "block";
+            myMove("questioncard", function(){
+              document.getElementById('questioncard').style.top = "-30%";
+            })
             function loopedcall(item){
                 $.ajax({
                     url: item,
@@ -83,11 +86,7 @@
                             question_elem.style.background = "rgba(255, 255, 255, .35)";
                             question_elem.placeholder = "Question not sent. Type again to ask another";
                         } else {
-                          document.getElementById('questioncard').style.display = "block";
-                          myMove("questioncard", function(){
-                              document.getElementById('questioncard').style.top = "-30%";
-                              question_elem.style.background = "rgba(255, 255, 255, .35)";
-                          })
+                          question_elem.style.background = "rgba(255, 255, 255, .35)";
                           question_elem.placeholder = "Question sent. Type again to ask another";
                         }
                         console.log(data)
@@ -120,8 +119,12 @@
               var saved_gratitude = gratitude_elem.value
               var url = base + '&gratitude=' +  encodeURIComponent(gratitude_elem.value.trim())
               gratitude_elem.value = "";
-              gratitude_elem.style.background = "rgba(255, 255, 255, 0)";
+              gratitude_elem.style.background = "rgba(220, 220, 220, 0)";
               gratitude_elem.placeholder = "";
+              document.getElementById('gratitudecard').style.display = "block";
+              myMove("gratitudecard", function(){
+                  document.getElementById('gratitudecard').style.top = "-30%";
+              })
                   
               function loopedcall(item){
                   $.ajax({
@@ -136,11 +139,7 @@
                             gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
                             gratitude_elem.placeholder = "Type again to ask another";
                         } else {
-                          document.getElementById('gratitudecard').style.display = "block";
-                            myMove("gratitudecard", function(){
-                                document.getElementById('gratitudecard').style.top = "-30%";
-                                gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
-                            })
+                            gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
                             gratitude_elem.placeholder = "Gratitude sent. Type again to ask another";
                         }
                         console.log(data)
