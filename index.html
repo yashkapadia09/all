@@ -50,36 +50,56 @@
 
       var teacher = getParameterByName('teacher')
       base = 'https://script.google.com/macros/s/AKfycbxNfH6OrQbfKaxtEk9dI4JvK0-VNz8hiXd72bqUf0AYPqxmhCA/exec?teacher=' + teacher
+      
       question_elem = document.getElementById("question");
       question_elem.addEventListener("keyup", function(event) {
-          event.preventDefault();
-          if (event.keyCode === 13) {
-              question_elem.blur();
-              var url = base + '&question=' +  encodeURIComponent(question_elem.value.trim())
-              question_elem.value = "";
-              question_elem.style.background = "rgba(255, 255, 255, 0)";
-              question_elem.placeholder = "";
-              document.getElementById('questioncard').style.display = "block";
-              myMove("questioncard", function(){
-                document.getElementById('questioncard').style.top = "-30%";
-                question_elem.style.background = "rgba(255, 255, 255, .35)";
-                question_elem.placeholder = "Question sent. Type again to ask another";
-              })
-              console.log(url)
-              $.ajax({
-                url: url,
-                method: "GET",
-                dataType: "json",
-                data: "{}",
-                success: function (data) {
-                  if (data['result'] == 'error') {
-                    alert("Oops! Something went wrong. Please send message manually to your teacher <3")
-                  }
-                },
-                error: function (xhr, status, error) {
-                 alert("Oops! Something went wrong. Please send message manually to your teacher <3. Error: " + xhr.status + xhr.statusText)
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            question_elem.blur();
+            var saved_question = question_elem.value
+            var url = base + '&question=' +  encodeURIComponent(question_elem.value.trim())
+            question_elem.value = "";
+            question_elem.style.background = "rgba(255, 255, 255, 0)";
+            question_elem.placeholder = "";
+                
+            function loopedcall(item){
+                $.ajax({
+                    url: item,
+                    method: "GET",
+                    dataType: "json",
+                    data: "{}",
+                    success: function (data) {
+                        if (data['result'] == 'error') {
+                            alert("Oops! Something went wrong. Please send message manually to your teacher <3 Here is the transcript: " + saved_question)
+                            question_elem.style.background = "rgba(255, 255, 255, .35)";
+                            question_elem.placeholder = "Question not sent. Type again to ask another";
+                        } else {
+                          document.getElementById('questioncard').style.display = "block";
+                          myMove("questioncard", function(){
+                              document.getElementById('questioncard').style.top = "-30%";
+                              question_elem.style.background = "rgba(255, 255, 255, .35)";
+                          })
+                          question_elem.placeholder = "Question sent. Type again to ask another";
+                        }
+                        console.log(data)
+                    },
+                    error: async function (xhr, status, error) {
+                        if (attempt > 5){
+                            alert("Oops! Something went wrong. Please try again later or send message manually to your teacher <3 Here is the transcript: " + saved_question)
+                            question_elem.placeholder = "Question not sent. Type again to ask another";
+                        }
+                        else {
+                            await sleep(1000*(attempt+1))
+                            console.log("Trying again " + item)
+                            loopedcall(item, attempt + 1)
+                        }
+                        console.log(xhr)
+                        console.log(status)
+                        console.log(error)
+                    }
+                    })
                 }
-              })
+            loopedcall(url, 0)
             }
         });
 
@@ -88,33 +108,50 @@
           event.preventDefault();
           if (event.keyCode === 13) {
               gratitude_elem.blur();
+              var saved_gratitude = gratitude_elem.value
               var url = base + '&gratitude=' +  encodeURIComponent(gratitude_elem.value.trim())
               gratitude_elem.value = "";
+              gratitude_elem.style.background = "rgba(255, 255, 255, 0)";
               gratitude_elem.placeholder = "";
-              gratitude_elem.style.background = "rgba(220, 220, 220, 0)";
-              document.getElementById('gratitudecard').style.display = "block";
-              myMove("gratitudecard", function(){
-                document.getElementById('gratitudecard').style.top = "-30%";
-                gratitude_elem.style.background = "rgba(220, 220, 220, 0.25)";
-                gratitude_elem.placeholder = "Gratitude sent. Type again to send another";
-              })
-              console.log(url)
-              $.ajax({
-                url: url,
-                method: "GET",
-                dataType: "json",
-                data: "{}",
-                success: function (data) {
-                  if (data['result'] == 'error') {
-                    alert("Oops! Something went wrong. Please send message manually to your teacher <3")
+                  
+              function loopedcall(item){
+                  $.ajax({
+                      url: item,
+                      method: "GET",
+                      dataType: "json",
+                      data: "{}",
+                      
+                      success: function (data) {
+                        if (data['result'] == 'error') {
+                            alert("Oops! Something went wrong. Please send message manually to your teacher <3 Here is the transcript: " + saved_gratitude)
+                            gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
+                            gratitude_elem.placeholder = "Type again to ask another";
+                        } else {
+                          document.getElementById('gratitudecard').style.display = "block";
+                            myMove("questioncard", function(){
+                                document.getElementById('gratitudecard').style.top = "-30%";
+                                gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
+                            })
+                            gratitude_elem.placeholder = "Gratitude not sent. Type again to ask another";
+                        }
+                        console.log(data)
+                      },
+                      error: async function (xhr, status, error) {
+                          if (attempt > 5){
+                              alert("Oops! Something went wrong. Please try again later or send message manually to your teacher <3 Here is the transcript: " + saved_gratitude)
+                              gratitude_elem.placeholder = "Gratitude not sent. Type again to ask another";
+                          }
+                          else {
+                              await sleep(1000*(attempt+1))
+                              console.log("Trying again " + item)
+                              loopedcall(item, attempt + 1)
+                          }
+                      }
+                      })
                   }
-                },
-                error: function (xhr, status, error) {
-                  alert("Oops! Something went wrong. Please send message manually to your teacher <3. Error: " + xhr.status + xhr.statusText)
-                }
-              })
-            }
-        });
+              loopedcall(url, 0)
+              }
+          });
     
     };
   </script>
