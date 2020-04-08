@@ -137,11 +137,11 @@
                             gratitude_elem.placeholder = "Type again to ask another";
                         } else {
                           document.getElementById('gratitudecard').style.display = "block";
-                            myMove("questioncard", function(){
+                            myMove("gratitudecard", function(){
                                 document.getElementById('gratitudecard').style.top = "-30%";
                                 gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
                             })
-                            gratitude_elem.placeholder = "Gratitude not sent. Type again to ask another";
+                            gratitude_elem.placeholder = "Gratitude sent. Type again to ask another";
                         }
                         console.log(data)
                       },
