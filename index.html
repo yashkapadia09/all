@@ -60,27 +60,27 @@
       var teacher = getParameterByName('teacher')
       if (teacher == 'jeff'){
         base = 'https://script.google.com/macros/s/AKfycbzh_i2H1nNbIEsZC6Z4dmLMEk9__NmTWYIXOeCUiAGJpXJijBgl/exec'
-      } if (teacher == 'bavani'){
+      } else if (teacher == 'bavani'){
         base = 'https://script.google.com/macros/s/AKfycbw4SpKlR7Gw-3pIDm3kDT180g89sdMbaj-DE2nh9vfLJUPiX98/exec'
-      } if (teacher == 'amit'){
+      } else if (teacher == 'amit'){
         base = 'https://script.google.com/macros/s/AKfycby7anGjt_xLBjElLJW_gCujYRyf94QMxfnb1iK4EUYmavVYsSA/exec'
-      } if (teacher == 'rajshree'){
+      } else if (teacher == 'rajshree'){
         base = 'https://script.google.com/macros/s/AKfycbyfwcAqcnAcgcDUa7pNSIOAJnpwsWFhocTU859zeBr5kc_Lc0pJ/exec'
-      } if (teacher == 'mona'){
+      } else if (teacher == 'mona'){
         base = 'https://script.google.com/macros/s/AKfycbyuunt3iEnNpMUMLws6NdUDhs6K3rJjuYKoYxFV1RWmsDbhupY/exec'
-      } if (teacher == 'bhushan'){
+      } else if (teacher == 'bhushan'){
         base = 'https://script.google.com/macros/s/AKfycbwvIHt2c28i-WShHoqRA0BHsu5Vv_LfXZS7ZpF3cgeGtn9eSw4/exec'
-      } if (teacher == 'kinjal'){
+      } else if (teacher == 'kinjal'){
         base = 'https://script.google.com/macros/s/AKfycbzDiIrqP4CiQSRsOL-lm4zWWxqUfzcBpBAwGgAQgX68XZ6wh3w/exec'
-      } if (teacher == 'deepika'){
+      } else if (teacher == 'deepika'){
         base = 'https://script.google.com/macros/s/AKfycbx6MQq2shb677CKcut5wv1tMEmUQ_geXpWJm787CvM0iaJiKkaU/exec'
-      } if (teacher == 'jimlarsen'){
+      } else if (teacher == 'jimlarsen'){
         base = 'https://script.google.com/macros/s/AKfycbydIJ0OVQVkA356x6PRAYDY-hSQfEAMvd3NdtDpog5TaZwi9ng/exec'
-      } if (teacher == 'jimwarner'){
+      } else if (teacher == 'jimwarner'){
         base = 'https://script.google.com/macros/s/AKfycbyGISeT20byRbxhuWu3DsiM6OOq0rip3mEBHKx-DivKvv0eN7z8/exec'
-      } if (teacher == 'pam'){
+      } else if (teacher == 'pam'){
         base = 'https://script.google.com/macros/s/AKfycbynIEygA6ZLfnqidPQ2u_8fFOprgCXItTVfrcCV1NJmdxUS69o/exec'
-      } if (teacher == 'michael'){
+      } else if (teacher == 'michael'){
         base = 'https://script.google.com/macros/s/AKfycbzhrP4ExSejxcy6ZAmSaCfw0GkKl_9EV0PA2mUWCK2_UNIoLKGt/exec'
       } else {
         base = 'https://script.google.com/macros/s/AKfycbymtpixIlPr1bd6xwkPZjQ3gF4kjZZoYmuEq64HkNhPjNBU7Co/exec'
@@ -94,7 +94,7 @@
         if (event.keyCode === 13) {
             question_elem.blur();
             var saved_question = question_elem.value
-            var url = base + '&question=' +  encodeURIComponent(question_elem.value.trim())
+            var url = base + '?question=' +  encodeURIComponent(question_elem.value.trim())
             question_elem.value = "";
             question_elem.style.background = "rgba(255, 255, 255, 0)";
             question_elem.placeholder = "";
@@ -145,7 +145,7 @@
           if (event.keyCode === 13) {
               gratitude_elem.blur();
               var saved_gratitude = gratitude_elem.value
-              var url = base + '&gratitude=' +  encodeURIComponent(gratitude_elem.value.trim())
+              var url = base + '?gratitude=' +  encodeURIComponent(gratitude_elem.value.trim())
               gratitude_elem.value = "";
               gratitude_elem.style.background = "rgba(220, 220, 220, 0)";
               gratitude_elem.placeholder = "";
