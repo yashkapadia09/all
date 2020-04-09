@@ -38,14 +38,6 @@
             }
         });
 
-
-      // https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep 
-      // Dan Dascalescu 
-
-      function sleep(ms) {
-          return new Promise(resolve => setTimeout(resolve, ms));
-      }
-
       // Code from: https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
       function getParameterByName(name, url) {
           if (!url) url = window.location.href;
@@ -119,16 +111,15 @@
                         }
                         console.log(data)
                     },
-                    error: async function (xhr, status, error) {
+                    error: function (xhr, status, error) {
                         if (attempt > 5){
                             alert("Oops! Something went wrong. Please try again later or send message manually to your teacher <3 Here is the transcript: " + saved_question)
                             question_elem.placeholder = "Question not sent. Type again to ask another";
                         }
                         else {
                             question_elem.placeholder = "Processing...";
-                            await sleep(1000*(attempt+1))
                             console.log("Trying again " + item)
-                            loopedcall(item, attempt + 1)
+                            setTimeout(function(){loopedcall(item, attempt + 1)}, 1000*(attempt+1))
                         }
                         console.log(xhr)
                         console.log(status)
@@ -173,16 +164,15 @@
                         }
                         console.log(data)
                       },
-                      error: async function (xhr, status, error) {
+                      error: function (xhr, status, error) {
                           if (attempt > 5){
                               alert("Oops! Something went wrong. Please try again later or send message manually to your teacher <3 Here is the transcript: " + saved_gratitude)
                               gratitude_elem.placeholder = "Gratitude not sent. Type again to ask another";
                           }
                           else {
                               gratitude_elem.placeholder = "Processing...";
-                              await sleep(1000*(attempt+1))
                               console.log("Trying again " + item)
-                              loopedcall(item, attempt + 1)
+                              setTimeout(function(){loopedcall(item, attempt + 1)}, 1000*(attempt+1))
                           }
                       }
                       })
