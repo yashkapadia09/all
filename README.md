@@ -4,6 +4,10 @@ To setup Google spreadsheet scripts, I copied and modified:
 Medium's @dmccoy's sheets tutorial scripts: https://medium.com/@dmccoy/how-to-submit-an-html-form-to-google-sheets-without-google-forms-b833952cc175
 (They did not come with a license, so assuming this is OK to use)
 
+I have included a modified version of this script in "script" file
+This script needs to go be pasted into script section of google spreadsheet you want the questions and gratitudes to go to. Go to publish, deploy as web app. You'll need to allow anonymous/anyone to access in the permissions and give authorizations. The website URL you get back can then be used to submit questions/gratitudes. 
+
+
 Background Image:  
 https://pixabay.com/photos/pier-jetty-wood-water-trees-1209549/  
 Free for commercial use  
