@@ -210,17 +210,17 @@
                         if (data['result'] == 'error') {
                             alert("Oops! Something went wrong. Please send message manually to your teacher <3 Here is the transcript: " + saved_gratitude)
                             gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
-                            gratitude_elem.placeholder = "Type again to ask another";
+                            gratitude_elem.placeholder = "Type again to send another";
                         } else {
                             gratitude_elem.style.background = "rgba(220, 220, 220, .25)";
-                            gratitude_elem.placeholder = "Gratitude sent. Type again to ask another";
+                            gratitude_elem.placeholder = "Gratitude sent. Type again to send another";
                         }
                         console.log(data)
                       },
                       error: function (xhr, status, error) {
                           if (attempt > 5){
                               alert("Oops! Something went wrong. Please try again later or send message manually to your teacher <3 Here is the transcript: " + saved_gratitude)
-                              gratitude_elem.placeholder = "Gratitude not sent. Type again to ask another";
+                              gratitude_elem.placeholder = "Gratitude not sent. Type again to send another";
                           }
                           else {
                               gratitude_elem.placeholder = "Processing...";
